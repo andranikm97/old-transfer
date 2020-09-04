@@ -1,0 +1,374 @@
+-----------------------------------   CHAPTER 1 -----------------------------------
+
+All data is stored in bits, which are represented as either a 1 or a 0. Binary numbers
+are represented as a sequence of 1s and 0s that represent a certain type of data. For
+Example, the number 13 is represented as the sequence below (below that sequence,
+is the weight of the digit in bits).
+
+  0  0  0  0 1 1 0 1
+128 64 32 16 8 4 2 1
+
+To determine the amount of numbers that a computer can represent, you need its operating 
+bit amount. For example, a 64-bit computer will be able to represent 2^64 different numbers,
+which is about 18 quintillion (10^18). The formula is straightforward. Considering signs and 
+decimal points, the actual number is 9 quadrillion (10^15). 
+
+With strings, you may only use the '\' property where a string is surrounded by ticks '`'.
+A character after the '\' has a special meaning and performs a special action. To avoid the
+use of the '\' with a special meaning, use '\\' before the special character. 
+
+Ternary operator: ?. This is a conditional operator that requires a truthy statement on the left
+and outputs to a first value on the right if statement is true, or the second value if it is not.
+
+There are values that do not really have any readable value. These are the 'null' and 'undefined'
+values. They are almost the same in meaning and can be used interchangeably.
+
+Type coercion (type correction upon execution of some statement), will only happen in truthy statements
+that are compared through a double operator like ==. If no type coercion is needed, use the === operator.
+
+-----------------------------------   CHAPTER 2 -----------------------------------
+
+A single binding may define multiple varibales at once, like so: let one = 1, two = 2.
+A binding can only start with and include alphabetical characters, $, _ and numbers,
+which are actually not allowed at the beginning of a binding name. 
+
+JS is a top to bottom reading style language.
+JS shortcuts: 
+_ += ... --> _ = _ + ... (++)
+_ -= ... --> _ = _ - ... (--)
+_ *= ... --> _ = _ * ...
+_ /= ... --> _ = _ / ...
+
+-----------------------------------   CHAPTER 3  -----------------------------------
+Example function notation:
+
+const square = function(x){
+  return x*x;
+}
+
+Scope: 
+Global scope is when a binding is defined outside of a certain function or block.
+Local scope is when a binding is defined inside of a certain function or block.
+'var' will create a global variable no matter if it is inside or outside a function,
+or a block. This gets overwritten when a global and a local variable have the same 
+name. In that case, a local variable defined in a function will not be able to call 
+on a global variable defined outside of a function.
+
+Another example function notation:
+
+function square(x){
+  return x*x;
+}
+
+This function above does not need to preceed its call in a script, which is a 
+handy feature when writing programs.
+
+Arrow function notations:
+
+1) const power = (base,exponent) => {
+  return x*x;
+}
+
+2) const power = x => x*x;
+
+3) const left = position => {
+  return position + 5;
+}
+
+4) const sigh = () => {
+  return 'sigh';
+}
+
+Every time a function is called, the computer stores current context in something
+called a 'call stack'. JS is really smart about arguments passed to a function:
+if too many are passed - JS will ignore the extras, if too few - JS will assign
+missing parameters a value of 'undefined'.
+
+-----------------------------------   CHAPTER 4  -----------------------------------
+Some useful array methods:
+  1) [].includes(<value >) = checks if the array includes the value in parantheses
+    
+Objects have properties, and there are 2 ways of accessing them. Suppose an object has
+property x.
+  1) obj.x
+  2) obj[x]
+
+To delete a property in an object, use 'delete <obj.prop_name>'
+Some useful object methods:
+  1) Object.keys(obj) = returns all keys in an object as an array of strings
+  2) Object.assign(target, source) = will copy all properties from a source to target an
+     update matching properties (source is dominant).
+
+Objects are mutable, unlike other types of data. This means that an object referencing 
+to another object will change upon that other object's change.
+
+Functions can accept not only pre-assigned number of parameters, but also an undefined
+amount if we use the 'rest-parameters': function name(...parameters){body};
+
+Math.random() = produces a floating number between 0 and 1 (exclusive)
+Math.random()*6 = produces a floating number between 0 and 5 (exclusive)
+Math.floor(Math.random()*6) = produces an integer number between 0 and 5 (exclusive)
+
+JSON rules:
+  - all properties must be enclosed by double quotes
+  - cannot pass functions, bindings, or anything that requires computation
+  - no comments are allowed
+
+
+-----------------------------------   CHAPTER 5  -----------------------------------
+
+Use abstraction to defeat repetition!
+
+Arrays provide a number of useful higher-order methods. 
+You can use .forEach to loop over the elements in an array. 
+The .filter method returns a new array containing only the elements that pass the predicate function. 
+Transforming an array by putting each element through a function is done with .map. 
+You can use .reduce to combine all the elements in an array into a single value. 
+The .some method tests whether any element matches a given predicate function. 
+And .findIndex finds the position of the first element that matches a predicate.
+
+
+-----------------------------------   CHAPTER 6 -----------------------------------
+
+OOP - divide a program into smaller pieces and make each piece responsible for managing
+its own state. The smaller programs interact through interfaces, which are limited sets
+of bindings or functions that have some functionality. Those are modeled using objects.
+The interfaces consists of specific methods and properties. Properties that are part of 
+an interface are public, others are private. Private properties usually use '_' in front
+of them. Encapsulation - separation of interfaces from implementations.
+
+Methods:
+As soon as a method is called on an object, a 'this' reference to that object is passed
+to that method and can be used to extract other info in the object. If you want to pass
+it explicitely, you can use the call() method on a method:
+
+<method_name>.call(<this>,...<args_for_method>)
+
+Most objects also have a prototype. It is another object that is used as fallback source
+of properties. A prototype also has a prototype. A prototype behind an empty object is 
+Object.prototype. Similarly, functions derive from Functions.prototype and arrays from 
+Arrays.prototype. You can create objects through the object prototype like this:
+
+Object.create(<new_object>)
+
+Classes:
+Classes define the shape of a type of an object. Such an object is called an instance of 
+the class. Usual notation:
+
+class Name {
+  constructor(property){
+    this.property = property;
+  }
+
+  ..
+}
+
+To avoid the creation an prototype in an object, use Object.create(null)
+To check for properties only in the object's own properties, use .hasOwnProperty('property').
+Property names can also be symbols, not only strings! Symbols are created with a Symbol function
+Why use symbols? You cannot create the same symbol twice. 
+
+let sym = Symbol("name"); Could be the same name as a property in the object's property list.
+
+Iterator interface: 
+The object is iterable only if it has method named with Symbol.iterator.
+
+Get, set, statics: 
+get method_name(){return ...}
+set method_name(...args){this.property = ...}
+static method_name(...args){return new Object}; access through Object_name.method_name(value); 
+Static methods will work without a class instance.
+
+
+Inheritance: 
+A new class inherits properties and behavior (methods) from the old class:
+Class newClass(superclass) extends oldClass (superclass)
+
+To know whether a particular class was derived from another superclass, simply
+refer the 'instanceOf' method after the subclass and before the superclass(or the same subclass).
+
+-----------------------------------   CHAPTER 8 -----------------------------------
+Putting a "use strict" statement at the top of a program will help spot certain errors and bugs 
+in code that standard JS compiler/execution will ignore. 
+
+Types: 
+Sometimes it is useful to use a type variable [T]
+
+Debugger: to activate debugger, either use DevTools or put a "debugger" word inside your code. This
+will serve as a breakpoint for the debugger. 
+
+Exception handling:
+An exception is thrown by a function, which jumps out not only of its own context, but also from all
+methods and scripts that had called on it. This is called "unwinding the stack". 
+
+try{some code}
+catch(exception_name){exception_value}
+finally{this code will execute no matter what!}
+
+-----------------------------------   CHAPTER 9 -----------------------------------
+To initialize a regular expression, use either:
+new RegExp('patter') 
+/pattern/
+
+no \ -- simple character
+\ -- metacharacter
+
+\s - any whitespace character (such as space, tab (\t), new line (\n), and carriage return (\r))
+\S - any non-whitespace character
+\w any alphanumeric character
+\W any non-alphanumeric character
+\d any digit from 0 to 9 (single!)
+\D any non-digit character (single)
+. wildcard - match any given character
+\. match a period
+\? match a question mark
+
+[abc] - will only match a single a, b, or c letter and nothing else
+[^abc] - will match anything but the characters inside the brackets
+
+[A-C] - matches any pattern containing any letter in range from A to C
+[a-c] - matches any pattern containing any letter in range from a to c
+[0-5] - matches any pattern containing any letter in range from 0 to 5
+[^A-C] - matches any pattern not containing any letter in range from A to C
+
+(file.+) - matches a group of characters containing file and 1 or more of any character
+(\w+ (\d+)) - matches a group of word charcters with a subgroup of digits after a space
+
+a{3}  - matches any string containing 3 consecutive 'a's
+[xyz]{3} - matches any string containing 3 consecutive letters in a range from x, y and z
+
+a+ - there is 1 or more 'a' in the string
+a* - 0 or more 'a' in the string
+
+ab?c - will match either 'abc' or 'ac'
+(abc|khq) - match either a sequence of characters abc OR khq
+
+^ - begins with
+    - ^success --> will only match a string starting with the word "success"
+$ - ends with
+
+JAVASCRIPT implementation
+
+initiate: var re = new RegExp(<expression>)
+          var regex = ("/...../")
+
+Methods:
+    - .test() --> test whether the regular expression matches a specific string in a given variable (returns boolean)
+    - .exec() --> extract info from the string based on the RegExp (returns null or object containing matched string)
+    - .match() --> returns the result of a matching string against the regex in an array format
+    - .search() --> executes a search for a match between regex and string, returns the first case of regex
+    - .replace(regex, replacing string) --> replaces matched string with a new given string  
+      - $1-9: returns position 1-9 of the matched string
+
+Flags (used at the end of the regular expression, or in the declaration of the RegExp object as second input):
+    - g --> allows to run RegExp.exec() multiple times in the literal notation in the input string until the method returns null
+    - i --> makes the pattern case insensitive
+    - m --> necessary if string contains any new line elements (\n); this flag allows ^ and $ to match at the beginning and end of each line, not the whole string
+    - u --> interpret regular expression as a unicode codepoints
+
+-----------------------------------   CHAPTER 10 -----------------------------------
+Evaluating data as code: most common = eval operator --> eval(code_as_string)
+                         other: Function operator --> let ... = Function("arguments","function body");
+
+What is 'require'?
+  - loads a module and returns its interface bound to exports;
+  - exports.hhh
+ES mode of dependency manipulation:
+import something from some_path
+  - will import the DEFAULTs of the package, or use {} to import specific things, also use 'as' in {} after
+   specific name to change name in local scope
+export something
+
+-----------------------------------   CHAPTER 11 -----------------------------------
+https://eloquentjavascript.net/11_async.html
+
+All commands inputed into the code script and executed by it are ran by the processor. 
+Therefore, the speed of the execution is entirely dependent on the processor. 
+
+In a synchronous programming model, things happen one at a time.
+An asynchronous model allows multiple things to happen at the same time
+
+-----------------------------------   CHAPTER 13 -----------------------------------
+Network protocol - style of communication between domains in on the WEB. HTTP - Hyper Text Transfer
+Protocol. A computer can connect to another computer only when it sends information to a proper port
+at which the receiving computer is expects information. The listening computer is called a server,
+while the sending computer is the client. WWW is a set of protocols and formats that allow clients
+to visit web pages in a browser. URL - Uniform Resource Locator. 
+
+https:// ejs.net /13_browser.html
+protocol server  path
+
+HTML: Hypertext Markup Language
+Head of HTML: contains information about the document, like:
+  - What encoder to user
+  - What title is the page 
+  - What sort of version to use to read this HTML 
+Body of HTML: contains the document itself
+
+Perhaps the most important tag in HTML is the <script></script> tag, because it allows us to integrate
+some code into our page. Use the "src" property to point to a large JS script and keep your HTML clean.
+
+
+-----------------------------------   CHAPTER 14 -----------------------------------
+
+When a webpage opens, the browser parses it into objects that are HTML tags. In the end,
+all these objects are represented as a document object model, or DOM. The word 'document',
+gives us access to the DOM in a relative js file. Nodes for elements, which represent HTML 
+tags, determine the structure of the document.
+
+Useful node properties: firstChild, lastChild, nextSibling, previousSibling
+
+Finding elements in DOM: through document.body object
+  - search methods: getElementByClassName, getElementById, querySelector, querySelectorAll
+
+Changing elements:
+  - change methods: insertBefore, remove, replaceChild
+
+Creating elements: 
+  - create method: createElement
+
+Getting the exact position of an element: getBoundingClientRect
+Getting scroll position of screen: pageXOffset, pageYOffset
+
+p .a {} --> applies CSS rules to ALL <a></a> children inside <p></p> (direct and indirect)
+p > .a {} --> applies CSS rules to only direct <a></a> children of <p></p>
+
+To let the browser update the screen according to a JS script, we need to put whatever function
+is driven with time inside of a 'requestAnimationFrame()' function. 
+
+-----------------------------------   CHAPTER 15 -----------------------------------
+https://eloquentjavascript.net/15_event.html
+
+Event listeners can be bound to the 'window' object as well as DOM nodes.
+  - use addEventListener();
+  
+
+If a button inside a paragraph is clicked, event handlers on the paragraph will also 
+see the click event. Most event objects have a target property that refers to the 
+node where they originated. 
+
+<button>A</button>
+<button>B</button>
+<button>C</button>
+<script>
+  document.body.addEventListener("click", event => {
+    if (event.target.nodeName == "BUTTON") {
+      console.log("Clicked", event.target.textContent);
+    }
+  });
+</script>
+
+By using a 'preventDefault' method on an event handler, you will prevent the default 
+behavior of that event and be able to override it with your own functionality.
+
+Key events: 'keydown', 'keyup'. Bind these to the document.body in most cases. Access
+through event.key. 
+
+To get precise information about the place where a mouse event happened, you can look 
+at its clientX and clientY properties, which contain the event’s coordinates (in pixels) 
+relative to the top-left corner of the window, or pageX and pageY, which are relative to 
+the top-left corner of the whole document (which may be different when the window has 
+been scrolled).
+
+When mouse buttons are held, its value is the sum of the codes for those buttons—the left 
+button has code 1, the right button 2, and the middle one 4.

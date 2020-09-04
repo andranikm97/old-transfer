@@ -1,0 +1,45 @@
+Parent props:
+
+1) display: flex;
+2) flex-direction: defines the direction of item positioning
+  - row | row-reverse | column | column-reverse
+
+3) flex-wrap: allow the items to wrap as needed with this property
+  - no-wrap | wrap | wrap-reverse
+
+4*) flex-flow: shorthand for flex-direction + flex-wrap
+  - flex-direction | flex-wrap;
+
+
+5) justify-content: defines the alignment along the main axis
+  - flex-start | flex-end | start | end | left | right | center 
+  | space-between | space-around | space-evenly;
+
+6) align-items: defines the alignment along the cross axis
+  - stretch | flex-start | flex-end | center | baseline | first baseline 
+  | last baseline | start | end | self-start | self-end + ... safe | unsafe;
+
+7) align-content: This aligns a flex container’s lines within when there is extra space in the cross-axis:
+  - flex-start | flex-end | center | space-between | space-around 
+  | space-evenly | stretch | start | end | baseline | first baseline | last baseline + ... safe | unsafe
+
+
+Child props:
+
+1) flex-grow: This defines the ability for a flex item to grow if necessary
+  - default: 0, other: positive #s
+  - if all children have 1 set, then space is distributed evenly among them
+
+2) flex-shrink: defines the ability for a flex item to shrink if necessary.
+  - default: 1, other: positive #s
+
+3) flex-basis: defines the default size of an element
+  - default: auto, other: length, percentage or rem
+
+4*) flex: shorthand for flex-grow, flex-shrink and flex-basis
+  - none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+
+5) align-self: overrides the align-items property of the parent for a particular element
+  - auto | flex-start | flex-end | center | baseline | stretch
+
+

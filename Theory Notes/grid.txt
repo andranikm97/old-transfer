@@ -1,0 +1,10 @@
+Link: https://css-tricks.com/snippets/css/complete-guide-grid/#prop-display
+
+
+Parent props:
+1) display: Defines the element as a grid container and establishes a new grid formatting context for its contents
+  - grid;
+
+2) 
+
+Child props:
